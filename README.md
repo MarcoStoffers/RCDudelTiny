@@ -14,6 +14,8 @@
 Have a look at the following pinout of the MP3-Player connector. A detailed Manual is also available (only german at this time) with lots of informations for building the RCDudelTiny and disassembling the MP3-Player
 ![Connector](https://marcostoffers.github.io/MP3-Player-Anschluss-RCDudelTiny.png)
 
+## 2 versions
+There are two different Arduino Sketches in there: RCDudelTiny.ino is for a disassembled MP3-Player shown in the manual | RCDudelTiny-board.ino is for these ready MP3-boards including a 1W amplifier.
 ## Base
 The module is based on a microchip ATtiny84A which is programmed via the [Arduino IDE](https://arduino.cc/). To use the microcontroller, the extension of [Spence Konde](https://github.com/SpenceKonde/ATTinyCore) is necessary. Programming is done without a bootloader directly via the ISP connector with an AVR programmer.
 
