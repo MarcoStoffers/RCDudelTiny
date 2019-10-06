@@ -72,12 +72,17 @@ void setup() {
   attachInterrupt(0, receiver, CHANGE);
   // wait until RC input is ok
   while(!rc_ok) { }
+  while(np_avg < 900){
   // learn RC middle
-  for(i=0; i<10; i++) {
-    np_avg += rc_value;
-    delay(100);
+  // only when rc_value between 1400 and 1600
+    if(between(rc_value, 1400, 1600)){
+      for(i=0; i<10; i++) {
+         np_avg += rc_value;
+         delay(100);
+      }
+      np_avg = np_avg / 10;
+    }
   }
-  np_avg = np_avg / 10;
 }
 /*************************************************************************************
  * Main Loop
