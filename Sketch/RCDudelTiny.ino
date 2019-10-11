@@ -1,7 +1,18 @@
 /*************************************************************************************
-* RCDudelTiny
+* RCDudelTiny 
 * ============
+* Steuerung eines MP3-Players mit dem China IC GPD2806A
+*                 ===========
+* Version : 1.1 
+* Hardware: ATtiny84A/8MHz internal | ATtiny Core von Spence Konde
+* Author  : Marco Stoffers
+* Year:   : 2018
+* License : CC | BY, NC, SA
+*
+* Modifed : 1.1, 10/2019, by Juergen Overroedder | Saves the average value for reciever input only if this is between 1400 and 1600
+************************************************************************************** 
 * 
+*
 * Steuerung eines MP3-Players mit dem China IC GPD2806A:
 * - Stick kurz nach oben = Power on / Play / Pause
 * - Stick 2x kurz nach oben (innerhalb 1sec) = Power off
@@ -25,11 +36,7 @@
 * D9  = Previous Relais
 * D10 = Power Relais 
 * 
-* Hardware: ATtiny84A/8MHz internal | ATtiny Core von Spence Konde
-* Author: Marco Stoffers
-* Year: 2018
-* License: CC | BY, NC, SA
-*************************************************************************************/
+*/
 /*************************************************************************************
  * User Defines
  *************************************************************************************/
