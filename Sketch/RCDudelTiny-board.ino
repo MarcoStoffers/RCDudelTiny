@@ -1,7 +1,18 @@
 /*************************************************************************************
-* RCDudelTiny
+* RCDudelTiny 
 * ============
+* Steuerung eines MP3-Boards mit dem China IC GPD2806A und inkl. 1W Verstärker
+*                 ==========                                     =============
+* Version : B1.1 
+* Hardware: ATtiny84A/8MHz internal | ATtiny Core von Spence Konde
+* Author  : Marco Stoffers
+* Year:   : 2018
+* License : CC | BY, NC, SA
+*
+* Modifed : B1.1, 10/2019, by Juergen Overroedder | Saves the average value for reciever input only if this is between 1400 and 1600
+************************************************************************************																  
 * 
+*
 * Steuerung eines MP3-Boards mit dem China IC GPD2806A und inkl. 1W Verstärker:
 * - Stick kurz nach oben = Power on / Play / Pause
 * - Stick 2x kurz nach oben (innerhalb 1sec) = Power off
@@ -23,11 +34,7 @@
 * D9  = Previous Relais
 * D10 = Power Relais 
 * 
-* Hardware: ATtiny84A/8MHz internal | ATtiny Core von Spence Konde
-* Author: Marco Stoffers
-* Year: 2018
-* License: CC | BY, NC, SA
-*************************************************************************************/
+*/
 /*************************************************************************************
  * User Defines
  *************************************************************************************/
@@ -67,12 +74,17 @@ void setup() {
   attachInterrupt(0, receiver, CHANGE);
   // wait until RC input is ok
   while(!rc_ok) { }
+  while(np_avg < 900){
   // learn RC middle
-  for(i=0; i<10; i++) {
-    np_avg += rc_value;
-    delay(100);
+  // only when rc_value between 1400 and 1600
+    if(between(rc_value, 1400, 1600)){
+      for(i=0; i<10; i++) {
+         np_avg += rc_value;
+         delay(100);
+      }
+      np_avg = np_avg / 10;
+    }
   }
-  np_avg = np_avg / 10;
 }
 /*************************************************************************************
  * Main Loop
@@ -215,3 +227,4 @@ void receiver() {
     else rc_ok = false;
   }
 }
+
